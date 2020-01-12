@@ -1,0 +1,25 @@
+Package: FredApi
+Type: Package
+Title: Download Data from FRED
+Version: 0.2.0
+Author: markushhh [aut, cre]
+Maintainer: markushhh <markushhh.jl@gmail.com>
+Description: FredApi offers the Possibility to Access the FRED Developer API in R.
+URL: https://github.com/markushhh/FredApi
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    httr,
+    xts,
+	purrr,
+	stringi
+Suggests:
+    knitr,
+    rmarkdown,
+    spelling
+NeedsCompilation: no
+Language: en-US
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
