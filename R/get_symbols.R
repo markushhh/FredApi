@@ -3,7 +3,7 @@
 #' @export get_symbols
 #' @title get_symbols
 #' @description Download data from FRED.
-#' @param symbol symbol, e.g. "GDPC1" or "FEDFUNDS"
+#' @param symbols , character denoting the symbols to download, e.g. "GDPC1" or "FEDFUNDS"
 #' @param api_key character specyfing the API for FRED
 #' @examples get_symbols("GDPC1")
 #' @examples get_symbols("T10Y2Y")

@@ -8,6 +8,8 @@ get_metadata(symbol)
 }
 \arguments{
 \item{symbol}{String specifying the name (id) of the time series.}
+
+\item{api_key}{character specyfing the API for FRED}
 }
 \description{
 Get information about a time series in the FRED database.

@@ -5,6 +5,7 @@
 #' @description Search for the symbol of an economic data series that matches the search text.
 #' @param search_text A string containing the words with which you expect to find the id of the variable.
 #' @param must_contain A string like "Germany" to explicitly search for a variable which contains "Germany" in its title. Currently allows one expression only.
+#' @param api_key character specyfing the API for FRED
 #' @examples search_symbol("Exports", "Mexico")
 #' @examples search_symbol("GDP", "Germany")
 #' @examples search_symbol("G", "France")
@@ -29,7 +30,7 @@ search_symbol <- function(search_text, must_contain = "", api_key = Sys.getenv("
     title = response |> purrr::map("title") |> unlist()
   ) |>
     tidyr::drop_na() |>
-    dplyr::arrange(desc(popularity))
+    dplyr::arrange(dplyr::desc(popularity))
 
   if (must_contain != "") {
     symbols <- symbols |> dplyr::filter(title |> stringr::str_detect(must_contain))

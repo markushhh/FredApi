@@ -7,13 +7,15 @@
 get_symbols(symbol)
 }
 \arguments{
-\item{symbol}{symbol, e.g. "GDPC1" or "FEDFUNDS"}
+\item{symbols}{, character denoting the symbols to download, e.g. "GDPC1" or "FEDFUNDS"}
+
+\item{api_key}{character specyfing the API for FRED}
 }
 \description{
 Download data from FRED.
 }
 \examples{
 get_symbols("GDPC1")
-get_symbols("FEDFUNDS")
 get_symbols("T10Y2Y")
+get_symbols("FEDFUNDS", "T10Y2Y")
 }

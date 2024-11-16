@@ -4,6 +4,7 @@
 #' @title get_category
 #' @description Get the categories for an economic data series in the FRED database.
 #' @param symbol String specifying the name (id) of the time series.
+#' @param api_key character specyfing the API for FRED
 #' @examples get_category("GDPC1")
 #' @examples get_category("FEDFUNDS")
 #' @examples get_category("T10Y2Y")

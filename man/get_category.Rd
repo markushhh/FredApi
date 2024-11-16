@@ -8,6 +8,8 @@ get_category(symbol)
 }
 \arguments{
 \item{symbol}{String specifying the name (id) of the time series.}
+
+\item{api_key}{character specyfing the API for FRED}
 }
 \description{
 Get the categories for an economic data series in the FRED database.
