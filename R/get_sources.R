@@ -5,7 +5,7 @@
 #' @description Get all sources of economic data.
 #' @param api_key character specyfing the API for FRED
 #' @examples get_sources()
-get_sources <- function(api_key = Sys.getenv("API_FRED")) {
+get_sources <- function(api_key = getOption("API_KEY_FRED")) {
   url <- "https://api.stlouisfed.org/fred/sources"
   parameters <- list(
     "api_key" = api_key,

@@ -1,18 +1,14 @@
-#' @usage search_symbol(search_text, must_contain)
+#' @usage search_symbol(search_text)
 #' @name search_symbol
 #' @export search_symbol
 #' @title search_symbol
-#' @description Search for the symbol of an economic data series that matches the search text.
-#' @param search_text A string containing the words with which you expect to find the id of the variable.
-#' @param must_contain A string like "Germany" to explicitly search for a variable which contains "Germany" in its title. Currently allows one expression only.
-#' @param api_key character specyfing the API for FRED
-#' @examples search_symbol("Exports", "Mexico")
-#' @examples search_symbol("GDP", "Germany")
-#' @examples search_symbol("G", "France")
-search_symbol <- function(search_text, must_contain = "", api_key = Sys.getenv("API_FRED")) {
-  search_text <- gsub(" ", "+", search_text, fixed = TRUE)
-  must_contain <- gsub(" ", "+", must_contain, fixed = TRUE)
-
+#' @description Search for the symbol of an economic data series that matches the `search_text`.
+#' @param search_text, character containing the words with which you expect to find the id of the variable.
+#' @param api_key, character specyfing the api key for FRED
+#' @examples search_symbol("Exports Mexico")
+#' @examples search_symbol("GDP Germany")
+#' @examples search_symbol("GNP France")
+search_symbol <- function(search_text, api_key = getOption("API_KEY_FRED")) {
   url <- "https://api.stlouisfed.org/fred/series/search"
   parameters <- list(
     "api_key" = api_key,
@@ -21,20 +17,18 @@ search_symbol <- function(search_text, must_contain = "", api_key = Sys.getenv("
   )
 
   response <-
-    httr::content(httr::GET(url, query = parameters), as = "parsed") |>
+    httr::GET(url, query = parameters) |>
+    httr::content(as = "parsed") |>
     purrr::pluck("seriess")
 
-  symbols <- tibble::tibble(
-    id = response |> purrr::map("id") |> unlist(),
-    popularity = response |> purrr::map("popularity") |> unlist(),
-    title = response |> purrr::map("title") |> unlist()
-  ) |>
+  symbols <-
+    tibble::tibble(
+      symbol = response |> purrr::map_vec("id"),
+      popularity = response |> purrr::map_vec("popularity"),
+      title = response |> purrr::map_vec("title")
+    ) |>
     tidyr::drop_na() |>
     dplyr::arrange(dplyr::desc(popularity))
-
-  if (must_contain != "") {
-    symbols <- symbols |> dplyr::filter(title |> stringr::str_detect(must_contain))
-  }
 
   return(symbols)
 }
