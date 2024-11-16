@@ -61,7 +61,7 @@ data |>
   dplyr::filter(date >= lubridate::ymd("2000-01-01")) |>
   ggplot2::ggplot() +
   ggplot2::geom_line(ggplot2::aes(date, values, col = symbol)) +
-  ggplot2::theme_minimal() + 
+  ggthemes::theme_hc() + 
   ggplot2::xlab("Time") +
   ggplot2::ylab("Real GDP")
 ggplot2::ggsave("plot.png", width = 16, height = 9)
