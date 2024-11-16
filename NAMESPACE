@@ -2,8 +2,7 @@
 
 export(get_category)
 export(get_metadata)
-export(get_release)
-export(get_source)
 export(get_sources)
 export(get_symbols)
+export(press_release_link)
 export(search_symbol)

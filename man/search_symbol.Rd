@@ -9,7 +9,9 @@ search_symbol(search_text, must_contain)
 \arguments{
 \item{search_text}{A string containing the words with which you expect to find the id of the variable.}
 
-\item{must_contain}{A string like "Germany" to explicitly search for a variable which contains "Germany" in its title}
+\item{must_contain}{A string like "Germany" to explicitly search for a variable which contains "Germany" in its title. Currently allows one expression only.}
+
+\item{api_key}{character specyfing the API for FRED}
 }
 \description{
 Search for the symbol of an economic data series that matches the search text.
@@ -18,6 +20,4 @@ Search for the symbol of an economic data series that matches the search text.
 search_symbol("Exports", "Mexico")
 search_symbol("GDP", "Germany")
 search_symbol("G", "France")
-x <- search_symbol("Exports", "Mexico")
-print(x)
 }

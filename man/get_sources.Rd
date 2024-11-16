@@ -6,6 +6,9 @@
 \usage{
 get_sources()
 }
+\arguments{
+\item{api_key}{character specyfing the API for FRED}
+}
 \description{
 Get all sources of economic data.
 }
