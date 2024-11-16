@@ -7,18 +7,20 @@
 #' @examples get_category("GDPC1")
 #' @examples get_category("FEDFUNDS")
 #' @examples get_category("T10Y2Y")
-get_category <- function(symbol) {
-
-  url = "https://api.stlouisfed.org/fred/series/categories"
+get_category <- function(symbol, api_key = Sys.getenv("API_FRED")) {
+  url <- "https://api.stlouisfed.org/fred/series/categories"
   parameters <- list(
-    "api_key" = Sys.getenv("API_FRED"),
+    "api_key" = api_key,
     "file_type" = "json",
     "series_id" = symbol
   )
 
-  response <- httr::content(httr::GET(url, query = parameters), as = "parsed")
-  body <- response$categories[[1]]$name
+  category <-
+    httr::GET(url, query = parameters) |>
+    httr::content(as = "parsed") |>
+    purrr::pluck("categories") |>
+    dplyr::first() |>
+    purrr::pluck("name")
 
-  return(body)
-
+  return(category)
 }
