@@ -9,7 +9,6 @@ set_api_key <- function(api_key) {
   if (Sys.getenv("API_FRED") != "") {
     message(paste0("API_FRED was already set to: ", Sys.getenv("API_FRED")))
     message("overwriting API_FRED to: ", api_key)
-  } else {
   }
   Sys.setenv("API_FRED" = api_key)
   return(invisible(api_key))
