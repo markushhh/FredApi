@@ -8,13 +8,9 @@ This package was ported from [FredApi.jl](https://github.com/markushhh/FredApi.j
 ## Installation
 
 ```@R
-#install.packages("FredApi") # not (yet?) supported
-```
-
-or
-
-```@R
+pak::pak("markushhh/FredApi")
 devtools::install_github("markushhh/FredApi")
+#install.packages("FredApi") # not (yet?) supported
 ```
 
 ## Tutorial

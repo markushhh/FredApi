@@ -1,10 +1,10 @@
 Package: FredApi
 Type: Package
 Title: Download Data from FRED
-Version: 0.2.0
+Version: 0.3.0
 Author: markushhh [aut, cre]
 Maintainer: markushhh <github.2ocpw@simplelogin.com>
-Description: FredApi offers the Possibility to Access the FRED Developer API in R.
+Description: FredApi loads FRED data directly into R.
 URL: https://github.com/markushhh/FredApi
 License: file LICENSE
 Encoding: UTF-8
