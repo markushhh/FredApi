@@ -8,13 +8,13 @@
 #' @examples search_symbol("Exports", "Mexico")
 #' @examples search_symbol("GDP", "Germany")
 #' @examples search_symbol("G", "France")
-search_symbol <- function(search_text, must_contain = "") {
+search_symbol <- function(search_text, must_contain = "", api_key = Sys.getenv("API_FRED")) {
   search_text <- gsub(" ", "+", search_text, fixed = TRUE)
   must_contain <- gsub(" ", "+", must_contain, fixed = TRUE)
 
   url <- "https://api.stlouisfed.org/fred/series/search"
   parameters <- list(
-    "api_key" = Sys.getenv("API_FRED"),
+    "api_key" = api_key,
     "file_type" = "json",
     "search_text" = search_text
   )
