@@ -1,7 +1,5 @@
 # FredApi (R package)
 
-![](./logo.png)
-
 `FredApi` offers the possibility to access the [FRED Developer API](https://research.stlouisfed.org/docs/api/) in R.
 This package was originally written for julia as [FredApi.jl](https://github.com/markushhh/FredApi.jl).
 
