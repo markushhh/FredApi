@@ -6,9 +6,9 @@
 #' @param api_key character specyfing the API for FRED
 #' @examples set_api_key("123121")
 set_api_key <- function(api_key) {
-  if (length(Sys.getenv("API_FRED")) > 1) {
-    message(paste0("API_FRED was already set: ", Sys.getenv("API_FRED")))
-    message("overwriting API_FRED...")
+  if (Sys.getenv("API_FRED") != "") {
+    message(paste0("API_FRED was already set to: ", Sys.getenv("API_FRED")))
+    message("overwriting API_FRED to: ", api_key)
   } else {
   }
   Sys.setenv("API_FRED" = api_key)
