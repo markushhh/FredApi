@@ -26,6 +26,7 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
     response |>
     purrr::pluck("observations")
 
+  title <- search_symbol(symbol) |> pull(title)
   data <-
     tibble::tibble(
       date = observations |> purrr::map_vec("date") |> as.Date(),
