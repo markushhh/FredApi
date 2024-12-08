@@ -27,6 +27,21 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
     purrr::pluck("observations")
 
   title <- search_symbol(symbol) |> pull(title)
+
+  get_frequency <- function(data) {
+    x <- data |>
+      dplyr::pull(date) |>
+      diff() |>
+      dplyr::first()
+    frequency <- dplyr::case_when(
+      x %in% c(365, 366) ~ "yearly",
+      x %in% c(88, 89, 90, 91, 92) ~ "quarterly",
+      x %in% c(28, 29, 30, 31) ~ "monthly",
+      x %in% c(1) ~ "daily"
+    )
+    return(frequency)
+  }
+
   data <-
     tibble::tibble(
       date = observations |> purrr::map_vec("date") |> as.Date(),
@@ -36,5 +51,6 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
       units = response$units
     ) |>
     dplyr::arrange(date, symbol)
+  data <- data |> dplyr::mutate(frequency = get_frequency(data))
   return(data)
 }
