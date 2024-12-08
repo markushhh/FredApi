@@ -31,7 +31,7 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
       date = observations |> purrr::map_vec("date") |> as.Date(),
       symbol = symbol,
       title = search_symbol(symbol)$title,
-      value = observations |> purrr::map_vec("value") |> stringr::str_replace(".", "") |> as.numeric(),
+      value = observations |> purrr::map_vec("value") |> as.numeric(),
       units = response$units
     ) |>
     dplyr::arrange(date, symbol)
