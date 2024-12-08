@@ -4,20 +4,18 @@
 \alias{search_symbol}
 \title{search_symbol}
 \usage{
-search_symbol(search_text, must_contain)
+search_symbol(search_text)
 }
 \arguments{
-\item{search_text}{A string containing the words with which you expect to find the id of the variable.}
+\item{search_text, }{character containing the words with which you expect to find the id of the variable.}
 
-\item{must_contain}{A string like "Germany" to explicitly search for a variable which contains "Germany" in its title. Currently allows one expression only.}
-
-\item{api_key}{character specyfing the API for FRED}
+\item{api_key, }{character specyfing the api key for FRED}
 }
 \description{
-Search for the symbol of an economic data series that matches the search text.
+Search for the symbol of an economic data series that matches the \code{search_text}.
 }
 \examples{
-search_symbol("Exports", "Mexico")
-search_symbol("GDP", "Germany")
-search_symbol("G", "France")
+search_symbol("Exports Mexico")
+search_symbol("GDP Germany")
+search_symbol("GNP France")
 }

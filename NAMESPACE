@@ -3,6 +3,6 @@
 export(get_category)
 export(get_metadata)
 export(get_sources)
-export(get_symbols)
+export(get_symbol)
 export(press_release_link)
 export(search_symbol)
