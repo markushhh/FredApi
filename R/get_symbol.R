@@ -26,19 +26,11 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
     response |>
     purrr::pluck("observations")
 
-  tibble::tibble(
-    date = observations |> purrr::map_vec("date") |> as.Date(),
-    symbol = symbol,
-    title = title,
-    value = observations |> purrr::map_vec("value") |> as.numeric(),
-    units = response$units
-  )
-
   data <-
     tibble::tibble(
       date = observations |> purrr::map_vec("date") |> as.Date(),
       symbol = symbol,
-      title = search_symbol(symbol)$title,
+      title = title,
       value = observations |> purrr::map_vec("value") |> as.numeric(),
       units = response$units
     ) |>
