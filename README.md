@@ -11,7 +11,7 @@ devtools::install_github("markushhh/FredApi")
 #install.packages("FredApi") # not (yet?) supported
 ```
 
-Setup Api key
+Set Api key
 
 ```R
 options("API_FRED" = "1234567")
