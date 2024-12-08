@@ -9,6 +9,7 @@
 #' @examples search_symbol("GDP Germany")
 #' @examples search_symbol("GNP France")
 search_symbol <- function(search_text, api_key = getOption("API_KEY_FRED")) {
+  if (api_key == "") stop("'api_key' is not set")
   url <- "https://api.stlouisfed.org/fred/series/search"
   parameters <- list(
     "api_key" = api_key,

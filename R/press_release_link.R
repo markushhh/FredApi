@@ -7,7 +7,8 @@
 #' @examples press_release_link("GDPC1")
 #' @examples press_release_link("FEDFUNDS")
 #' @examples press_release_link("T10Y2Y")
-press_release_link <- function(symbol) {
+press_release_link <- function(symbol, api_key = getOption("API_KEY_FRED"))) {
+  if (api_key == "") stop("'api_key' is not set")
   url <- "https://api.stlouisfed.org/fred/series/release"
   parameters <- list(
     "api_key" = Sys.getenv("API_FRED"),
