@@ -27,7 +27,6 @@ search_symbol <- function(search_text, api_key = getOption("API_KEY_FRED")) {
       popularity = response |> purrr::map_vec("popularity"),
       title = response |> purrr::map_vec("title")
     ) |>
-    tidyr::drop_na() |>
     dplyr::arrange(dplyr::desc(popularity))
 
   return(symbols)

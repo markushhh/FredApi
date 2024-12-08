@@ -5,7 +5,7 @@ This package was originally written for julia as [FredApi.jl](https://github.com
 
 ## Installation
 
-```@R
+```R
 pak::pak("markushhh/FredApi")
 devtools::install_github("markushhh/FredApi")
 #install.packages("FredApi") # not (yet?) supported
@@ -13,7 +13,7 @@ devtools::install_github("markushhh/FredApi")
 
 Setup Api key
 
-```@R
+```R
 options("API_FRED" = "1234567")
 ```
 
@@ -22,13 +22,13 @@ options("API_FRED" = "1234567")
 Download a full dataset with
 
 ```R
-get_symbols("GDPC1")
+get_symbol("GDPC1")
 ```
 
 output
 
 ```R
-> get_symbols("GDPC1")
+> get_symbol("GDPC1")
 # A tibble: 311 × 3
    date       symbol values
    <date>     <chr>   <dbl>
@@ -48,7 +48,7 @@ output
 
 ## Plotting example
 
-```@R
+```R
 data <- 
   search_symbol("Real Gross Domestic Product") |>
   dplyr::filter(
@@ -57,20 +57,18 @@ data <-
     title |> stringr::str_detect("Japan")
   ) |>
   head(3) |>
-  dplyr::select(id) |>
-  dplyr::pull() |>
-  get_symbols() 
-  
+  dplyr::pull(symbol) |>
+  purrr::map(get_symbol) |>
+  dplyr::bind_rows()
+
 data |> 
   dplyr::filter(date >= lubridate::ymd("2000-01-01")) |>
   ggplot2::ggplot() +
-  ggplot2::geom_line(ggplot2::aes(date, values, col = symbol)) +
+  ggplot2::geom_line(ggplot2::aes(date, value, col = symbol)) +
   ggthemes::theme_hc() + 
-  ggplot2::xlab("Time") +
+  ggplot2::xlab("") +
   ggplot2::ylab("Real GDP")
-ggplot2::ggsave("plot.png", width = 16, height = 9)
+ggplot2::ggsave("plot.png", width = 8, height = 4.5)
 ```
 
 !["plot"](./plot.png)
-
-# Each comment, suggestion or pull request is welcome!

@@ -27,11 +27,10 @@ get_symbol <- function(symbol, api_key = getOption("API_KEY_FRED")) {
 
   data <-
     tibble::tibble(
-      date = response |> purrr::map("date") |> unlist() |> as.Date(),
+      date = response |> purrr::map_vec("date") |> as.Date(),
       symbol = symbol,
-      value = response |> purrr::map("value") |> unlist() |> as.numeric()
+      value = response |> purrr::map_vec("value") |> as.numeric()
     ) |>
     dplyr::arrange(date, symbol)
-
   return(data)
 }
