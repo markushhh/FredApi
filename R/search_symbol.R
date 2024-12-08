@@ -21,6 +21,7 @@ search_symbol <- function(search_text, api_key = getOption("API_KEY_FRED")) {
     httr::GET(url, query = parameters) |>
     httr::content(as = "parsed") |>
     purrr::pluck("seriess")
+  if (length(response) == 0) stop("no result")
 
   symbols <-
     tibble::tibble(
